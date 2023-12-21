@@ -1,0 +1,75 @@
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#app .stats {
+  transform-origin: 0 0;
+  transform: scale(1.5);
+  position: relative;
+}
+
+#app .aim {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 3rem;
+  display: none;
+}
+
+#app .handy-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid #101F0A;
+}
+
+#app .handy-bar .handy-bar-item {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid #4F6149;
+  background-color: rgba(255, 255, 255, .25);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app .handy-bar .handy-bar-item img {
+  width: 90%;
+  height: 90%;
+}
+
+#app .handy-bar .handy-bar-item.active {
+  outline: 2px solid #D5E8D0;
+  border-color: transparent;
+  z-index: 9;
+}
+
+#start {
+  position: fixed; 
+  top: 0; 
+  right: 0; 
+  cursor: pointer; 
+  padding: 10px; 
+  border: 1px solid #eee; 
+  margin: 10px;
+}
+
+#coordinate {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  margin: 10px;
+}
