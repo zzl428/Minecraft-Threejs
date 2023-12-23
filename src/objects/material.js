@@ -46,7 +46,7 @@ export const stoneMaterial = new THREE.MeshStandardMaterial({ map: stoneTexture 
 // 火把
 const torchTexture = loader.load(torchPic);
 torchTexture.magFilter = THREE.NearestFilter;
-export const torchMaterial = new THREE.MeshStandardMaterial({ map: torchTexture });
+export const torchMaterial = new THREE.MeshBasicMaterial({ map: torchTexture });
 
 
 // const materials = {
@@ -68,7 +68,7 @@ export const torchMaterial = new THREE.MeshStandardMaterial({ map: torchTexture 
 //   },
 //   // 史蒂夫
 //   // steve: {
-//   //   material: new THREE.MeshLambertMaterial({ map: loader.load(stevePic) }),
+//   //   material: new THREE.MeshStandardMaterial({ map: loader.load(stevePic) }),
 //   // }
 // }
 

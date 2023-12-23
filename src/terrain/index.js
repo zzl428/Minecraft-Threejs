@@ -48,7 +48,7 @@ export default class Terrain {
 
   unloadChunk({chunkX, chunkZ}) {
     const key = this.parseKey(chunkX, chunkZ);
-    const chunk = this.chunkMap.get(key).chunk;
+    const chunk = this.chunkMap.get(key)?.chunk;
     if (!chunk) return;
     chunk.unload(this.scene);
     this.loadingChunk.delete(key)
@@ -78,7 +78,7 @@ export default class Terrain {
   hasBlock(coordinate) {
     const {chunkX, chunkZ} = this.getChunkOffset(coordinate);
     const key = this.parseKey(chunkX, chunkZ);
-    const chunk = this.chunkMap.get(key).chunk;
+    const chunk = this.chunkMap.get(key)?.chunk;
     if (!chunk) return false;
     return chunk.getBlock(coordinate);
   }
@@ -90,7 +90,7 @@ export default class Terrain {
     }
     const {chunkX, chunkZ} = this.getChunkOffset(coordinate);
     const key = this.parseKey(chunkX, chunkZ);
-    const chunk = this.chunkMap.get(key).chunk;
+    const chunk = this.chunkMap.get(key)?.chunk;
     if (!chunk) return false;
     chunk.addBlock(coordinate, this.ui.currentBlock, this.scene);
   }
@@ -98,7 +98,7 @@ export default class Terrain {
   removeBlock(coordinate) {
     const {chunkX, chunkZ} = this.getChunkOffset(coordinate);
     const key = this.parseKey(chunkX, chunkZ);
-    const chunk = this.chunkMap.get(key).chunk;
+    const chunk = this.chunkMap.get(key)?.chunk;
     if (!chunk) return false;
     chunk.removeBlock(coordinate, this.scene);
   }

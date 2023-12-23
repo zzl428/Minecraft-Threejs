@@ -17,72 +17,13 @@ class Player {
     y: 0,
     z: 0
   }
-  
-  // constructor(scene) {
-  //   const group = new THREE.Group();
-  //   // 图片像素 64*64
-  //   const steveMaterial = materials.steve.material;
-
-  //   const headBox = new THREE.BoxGeometry(0.45, 0.45, 0.45);
-  //   const headUvs = new Float32Array([
-  //     // 右侧面
-  //     16/64, (64-8)/64, //左上
-  //     24/64, (64-8)/64, //右上
-  //     16/64, (64-16)/64, //左下
-  //     24/64, (64-16)/64,  //右下
-  //     // 左侧面
-  //     0, (64-8)/64, 
-  //     8/64, (64-8)/64, 
-  //     0, (64-16)/64, 
-  //     8/64, (64-16)/64,
-  //     // 上侧面
-  //     8/64, 1, 
-  //     16/64, 1, 
-  //     8/64, (64-8)/64, 
-  //     16/64, (64-8)/64,
-  //     // 下侧面
-  //     16/64, 1, 
-  //     24/64, 1, 
-  //     16/64, (64-8)/64, 
-  //     24/64, (64-8)/64,
-  //     // 前侧面
-  //     8/64, (64-8)/64, 
-  //     16/64, (64-8)/64, 
-  //     8/64, (64-16)/64, 
-  //     16/64, (64-16)/64,
-  //     // 后侧面
-  //     24/64, (64-8)/64,
-  //     32/64, (64-8)/64,
-  //     24/64, (64-16)/64,
-  //     32/64, (64-16)/64, 
-  //   ]);
-  //   headBox.attributes.uv = new THREE.BufferAttribute(headUvs, 2);
-  //   const head = new THREE.Mesh(headBox, steveMaterial);
-  //   group.add(head);
-  //   scene.add(group)
-  // }
-  // constructor(scene) {
-  //   const loader = new OBJLoader();
-  //   loader.load(Minecraft_Simple_Rig, simple => {
-  //     // 
-  //     // simple.position.set(0, -0.5, 0)
-  //     const obj = new THREE.Box3().setFromObject(simple);
-  //     const scale = this.height / (obj.max.y - obj.min.y);
-  //     simple.scale.set(scale , scale, scale)
-  //     console.log('simple', simple.position)
-  //     // 校准站在基岩上时的Y偏移量
-  //     const adjustingY = -obj.min.y * scale;
-  //     scene.add(simple);
-  //     this.mc = simple;
-  //   });
-  // }
 
   constructor(camera) {
     // 处于方便考虑，将摄像机当成玩家，而不考虑引入额外的模型，此后对摄像机的操作，等价于对玩家的操作
     this.position = camera.position;
 
     // 设置出生位置
-    camera.position.set(0, EYEHEIGHT + 32, 0);
+    camera.position.set(10, EYEHEIGHT + 32, 10);
 
     this.updateCoordinate()
   }

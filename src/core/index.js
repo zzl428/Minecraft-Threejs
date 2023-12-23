@@ -31,7 +31,7 @@ export default class Core {
     this.stats = initStats(app);
 
     // 添加轨道控制器
-    this.Coordinates = new OrbitControls(this.camera, this.renderer.domElement);
+    // this.Coordinates = new OrbitControls(this.camera, this.renderer.domElement);
 
     // 初始化玩家
     this.player = new Player(this.camera);
@@ -60,78 +60,6 @@ export default class Core {
     this.renderer.render( this.scene, this.camera );
   }
 
-  // generateTerrain() {
-  //   const geometry = new THREE.BoxGeometry();
-    
-  //   const stones = [];
-  //   const grasses = [];
-  //   const dirts = [];
-  //   const terrain = []
-  //   const matrix = new THREE.Matrix4();
-  //   for (let x = 0; x < worldSize; x++) {
-  //     for (let z = 0; z < worldSize; z++) {
-  //       const height = Math.floor(this.noise.get(x, z));
-  //       terrain.push({x: x + 0.5, y: height + 0.5, z: z + 0.5});
-  //     }
-  //   }
-
-  //   const terrainHeight = terrain.map(item => item.y);
-  //   const maxHeight = Math.max(...terrainHeight);
-  //   const minHeight = Math.min(...terrainHeight);
-  //   const stoneLine = (maxHeight - minHeight) / 3 + minHeight;
-
-  //   terrain.forEach(item => {
-  //     if (item.y <= stoneLine) {
-  //       stones.push(item);
-  //       for (let h = 0; h <= item.y; h++) {
-  //         stones.push({x: item.x, y: h + 0.5, z: item.z})
-  //       }
-  //     } else {
-  //       for (let h = 0; h < item.y; h++) {
-  //         if (h <= stoneLine) {
-  //           stones.push({x: item.x, y: h + 0.5, z: item.z})
-  //         } else {
-  //           dirts.push({x: item.x, y: h + 0.5, z: item.z})
-  //         }
-  //       }
-  //       grasses.push({
-  //         x: item.x, y: item.y + 1, z: item.z
-  //       })
-  //     }
-  //   })
-  //   console.log('stone', stones)
-    
-  //   const stoneBlocks = new THREE.InstancedMesh(
-  //     geometry,
-  //     materials.stone.material,
-  //     stones.length
-  //   )
-  //   stones.forEach((stone, index) => {
-  //     stoneBlocks.setMatrixAt(index, matrix.makeTranslation(stone.x, stone.y, stone.z))
-  //   })
-  //   this.scene.add(stoneBlocks);
-
-  //   const dirtBlocks = new THREE.InstancedMesh(
-  //     geometry,
-  //     materials.dirt.material,
-  //     dirts.length
-  //   )
-  //   dirts.forEach((dirts, index) => {
-  //     dirtBlocks.setMatrixAt(index, matrix.makeTranslation(dirts.x, dirts.y, dirts.z))
-  //   })
-  //   this.scene.add(dirtBlocks);
-
-  //   const grassBlocks = new THREE.InstancedMesh(
-  //     geometry,
-  //     materials.grass.material,
-  //     grasses.length
-  //   )
-  //   grasses.forEach((grass, index) => {
-  //     grassBlocks.setMatrixAt(index, matrix.makeTranslation(grass.x, grass.y, grass.z))
-  //   })
-  //   this.scene.add(grassBlocks);
-  // }
-
   listen() {
     // 视口改变
     window.addEventListener('resize', () => {
@@ -141,16 +69,21 @@ export default class Core {
     })
 
     document.querySelector("#start").addEventListener('click', () => {
-      this.controls.pointerLockControls.lock();
-      document.querySelector('.aim').style.display = 'unset'
+      if (!this.controls.pointerLockControls.isLocked) {
+        this.controls.pointerLockControls.lock();
+      }
     });
 
     this.controls.pointerLockControls.addEventListener( 'lock', () => {
       document.querySelector("#start").style.display = 'none';
+      document.querySelector(".aim").style.display = 'unset';
     });
 
     this.controls.pointerLockControls.addEventListener( 'unlock', () => {
-      document.querySelector("#start").style.display = 'unset'
+      document.querySelector("#start").style.display = 'unset';
+      document.querySelector('.aim').style.display = 'none';
+      
+      this.controls.pointerLockControls.unlock();
     });
 
     document.addEventListener('wheel', (e) => {

@@ -157,7 +157,7 @@ export default class Chunk {
   }
 
   load(scene) {
-    scene.add(this.bedRock);
+    this.bedRock && scene.add(this.bedRock);
     this.cloud && scene.add(this.cloud);
     Object.keys(this.defaultBlock).forEach(key => {
       const block = this.defaultBlock[key];
@@ -170,7 +170,7 @@ export default class Chunk {
   }
 
   unload(scene) {
-    scene.remove(this.bedRock);
+    this.bedRock && scene.remove(this.bedRock);
     this.cloud && scene.remove(this.cloud);
     Object.keys(this.defaultBlock).forEach(key => {
       const block = this.defaultBlock[key];

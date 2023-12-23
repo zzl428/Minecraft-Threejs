@@ -9,7 +9,7 @@ export const getTorch = () => {
   newGeometry.clone(torchGeometry);
   const torch = new THREE.Mesh(torchGeometry, torchMaterial);
   // 添加光源
-  const pointLight = new THREE.PointLight( 0xffffff, 1, 10, 2 );
+  const pointLight = new THREE.PointLight( 0xffffff, 1, 10, .1 );
   pointLight.position.y += 0.4;
   torch.add( pointLight );
   return torch;
